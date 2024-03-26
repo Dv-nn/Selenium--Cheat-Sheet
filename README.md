@@ -1,3 +1,3 @@
 # Шпаргалка Selenium  
 
-[https://www.selenium.dev/documentation/](Документация) - документация Selenium   
+[Документация](https://www.selenium.dev/documentation/) - документация Selenium   
