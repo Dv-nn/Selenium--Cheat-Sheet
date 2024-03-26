@@ -132,73 +132,150 @@ webdriver.get("http://example_url.ru")
 webdriver.quit()
 # Закрывает только текущую вкладку
 webdriver.close()
-
-# Выполняет JavaScript код на текущей странице
-webdriver.execute_script("script_code") 
-# Асинхронно выполняет JavaScript код. Удобно для работы с AJAX и промисами
-webdriver.execute_async_script("script_code" , *args )
  
-# Устанавливает таймаут на загрузку страницы. Выбрасывает исключение, если время вышло.
+# Устанавливает таймаут на загрузку страницы. Выбрасывает исключение, если время вышло
 webdriver.set_page_load_timeout() 
  
-# Возвращает первый найденный элемент по заданному локатору.
+# Возвращает первый найденный элемент по заданному локатору
 webdriver.find_element(By.ID, 'example_id') 
-# Возвращает список всех элементов, соответствующих локатору.
+# Возвращает список всех элементов, соответствующих локатору
 webdriver.find_elements(By.ID, 'example_id') 
  
-#  Возвращает словарь с текущей позицией окна браузера ({'x': 10, 'y': 50}).
+#  Возвращает словарь с текущей позицией окна браузера ({'x': 10, 'y': 50})
 webdriver.get_window_position()
-# Разворачивает окно на весь экран.
+# Разворачивает окно на весь экран
 webdriver.maximize_window() 
 
 # Сворачивает окно.
 webdriver.minimize_window() 
 
-# Переводит окно в полноэкранный режим, как при нажатии F11.
+# Переводит окно в полноэкранный режим, как при нажатии F11
 webdriver.fullscreen_window()  
-# Возвращает размер окна в виде словаря ({'width': 945, 'height': 1020}).
+# Возвращает размер окна в виде словаря ({'width': 945, 'height': 1020})
 webdriver.get_window_size() 
-# Устанавливает новый размер окна.
+# Устанавливает новый размер окна
 webdriver.set_window_size(800,600) 
  
-# Возвращает список всех cookies.
+# Возвращает список всех cookies
 webdriver.get_cookies() 
-# Возвращает конкретную cookie по имени.
+# Возвращает конкретную cookie по имени
 webdriver.get_cookie(name_cookie) 
-# Добавляет новую cookie к вашему текущему сеансу
+
+# Добавляет новую cookie к вашему текущему сеансу----------------
 webdriver.add_cookie(cookie_dict)
-# Удаляет cookie по имени.
+
+cookie_dict = {
+    'name': 'any_name_cookie',    # Любое имя для cookie
+    'value': 'any_value_cookie',  # Любое значение для cookie
+    'expiry': 2_000_000_000,      # Время жизни cookie в секундах
+    'path': '/',                  # Директория на сервере дял которой будут доступны cookie
+    'domain': 'parsinger.ru',     # Информация о домене и поддомене для которых доступны cookie
+    'secure': True,  # or False   # Сигнал браузера о том что передать cookie только по защищённому HTTPS
+    'httpOnly': True,  # or False # Ограничивает достук к cookie по средствам API
+    'sameSite': 'Strict',  # or lax or none # Ограничение на передачу cookie между сайтами
+}
+webdriver.add_cookie(cookie_dict)
+pprint(webdriver.get_cookies())
+#----------------------------------------------------------------
+# Удаляет cookie по имени
 webdriver.delete_cookie(name_cookie)
 # удаляет все файлы cookie в рамках текущего сеанса
 webdriver.delete_all_cookies() 
  
-# Устанавливает неявное ожидание на поиск элементов или выполнение команд.
+# Устанавливает неявное ожидание на поиск элементов или выполнение команд
 webdriver.implicitly_wait(10)
 webdriver.WebDriverWait(driver, timeout).until(condition)
 
-# Симулирует клик по элементу.
+# Симулирует клик по элементу
 element.click() 
 # Вводит текст в текстовое поле
 element.send_keys("text")
-# Очищает текстовое поле.
+# Очищает текстовое поле
 element.clear()
-# Проверяет, отображается ли элемент на странице.
+# Проверяет, отображается ли элемент на странице
 element.is_displayed() 
-# Проверяет, доступен ли элемент для взаимодействия (например, не заблокирован).
+# Проверяет, доступен ли элемент для взаимодействия (например, не заблокирован)
 element.is_enabled() 
-# Проверяет, выбран ли элемент (актуально для радиокнопок и чекбоксов).
+# Проверяет, выбран ли элемент (актуально для радиокнопок и чекбоксов)
 element.is_selected() 
-# Возвращает значение указанного атрибута элемента.
+# Возвращает значение указанного атрибута элемента
 element.get_attribute("attribute") 
-# Возвращает текст элемента.
+# Возвращает текст элемента
 element.text 
-# Отправляет форму, в которой находится элемент.
+# Отправляет форму, в которой находится элемент
 element.submit() 
 
-# Переключает фокус на указанный фрейм.
+# Переключает фокус на указанный фрейм
 webdriver.switch_to.frame("frame_name") 
-# Возвращает фокус на основное содержимое страницы, выходя из фрейма.
+# Возвращает фокус на основное содержимое страницы, выходя из фрейма
 webdriver.switch_to.default_content() 
 
-# Переключает фокус на всплывающее окно JavaScript.
+# Переключает фокус на всплывающее окно JavaScript
 webdriver.switch_to.alert 
+
+# Cookie-------------------------------------------------------
+# Добавляет новую cookie к вашему текущему сеансу
+webdriver.add_cookie(cookie_dict)
+
+cookie_dict = {
+    'name': 'any_name_cookie',    # Любое имя для cookie
+    'value': 'any_value_cookie',  # Любое значение для cookie
+    'expiry': 2_000_000_000,      # Время жизни cookie в секундах
+    'path': '/',                  # Директория на сервере дял которой будут доступны cookie
+    'domain': 'parsinger.ru',     # Информация о домене и поддомене для которых доступны cookie
+    'secure': True,  # or False   # Сигнал браузера о том что передать cookie только по защищённому HTTPS
+    'httpOnly': True,  # or False # Ограничивает достук к cookie по средствам API
+    'sameSite': 'Strict',  # or lax or none # Ограничение на передачу cookie между сайтами
+}
+webdriver.add_cookie(cookie_dict)
+pprint(webdriver.get_cookies())
+
+
+# Удаляет cookie по имени
+webdriver.delete_cookie(name_cookie)
+# удаляет все файлы cookie в рамках текущего сеанса
+webdriver.delete_all_cookies() 
+# -------------------------------------------------------------
+
+# JavaScript---------------------------------------------------
+# Выполняет JavaScript код на текущей странице
+webdriver.execute_script("script_code") 
+# Асинхронно выполняет JavaScript код. Удобно для работы с AJAX и промисами
+webdriver.execute_async_script("script_code" , *args )
+# прокручивает родительский контейнер элемента таким образом, чтобы element, для которого вызывается scrollIntoView, был виден пользователю.
+webdriver.execute_script("return arguments[0].scrollIntoView(true);", element) 
+# создаст новую вкладку в браузере с именем "tab2"
+webdriver.execute_script("window.open('http://parsinger.ru', 'tab2');")
+# вернёт значение высоты элемента <body>
+webdriver.execute_script("return document.body.scrollHeight") 
+# вернёт значение ширины окна браузера
+webdriver.execute_script("return window.innerWidth") 
+# прокрутит документ на заданное число пикселей по осям X и Y
+webdriver.execute_script("window.scrollBy(X, Y)")
+# вызывает модальное окно Alert
+webdriver.execute_script("alert('Ура Selenium')")
+# возвращает title открытого документа
+webdriver.execute_script("return document.title;")
+# возвращает URL документа
+webdriver.execute_script("return document.documentURI;") 
+# возвращает состояние загрузки страницы; вернёт "complete", если страница загрузилась
+webdriver.execute_script("return document.readyState;")
+# возвращает список всех якорей на странице
+webdriver.execute_script("return document.anchors;")
+# этот код позволяет получить список всех тегов с якорями. Очень полезная инструкция, особенно если при скроллинге элемент для "зацепления" не найден
+[x.tag_name for x in browser.execute_script("return document.anchors;")]
+# возвращает строку, содержащую все cookies документа, разделённые точкой с запятой
+webdriver.execute_script("return document.cookie;")
+# возвращает домен текущего документа
+webdriver.execute_script("return document.domain;") 
+# возвращает список всех форм на странице
+webdriver.execute_script("return document.forms;")
+# прокручивает документ до указанных координат
+webdriver.execute_script("window.scrollTo(x-coord, y-coord);")
+# возвращает список всех элементов с классом 'container'
+webdriver.execute_script("return document.getElementsByClassName('container');") 
+# возвращает список всех элементов с тегом 'container'
+webdriver.execute_script("return document.getElementsByTagName('container');")  
+# возвращает элемент с указанным ID 'some-id'
+webdriver.execute_script("return document.getElementById('some-id');") 
+# -------------------------------------------------------------------
