@@ -1,4 +1,4 @@
-# Шпаргалка Selenium  
+# Selenium Шпаргалка   
 
 [Шпаргалка](https://github.com/Dv-nn/Selenium/blob/main/selenium.py) - шпаралка Selenium   
 
