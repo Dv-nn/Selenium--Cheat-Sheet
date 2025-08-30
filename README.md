@@ -254,7 +254,7 @@ ____
   > webdriver.execute_script("return document.getElementById('some-id');")   
 ____  
 
-[Шпаргалка](https://github.com/Dv-nn/Selenium/blob/main/selenium.py) - шпаралка Selenium   
+[Шпаргалка](https://github.com/Dv-nn/Selenium/blob/main/selenium.py) - шпаргалка Selenium   
 
 [Документация](https://www.selenium.dev/documentation/) - документация Selenium     
 
